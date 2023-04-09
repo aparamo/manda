@@ -1,0 +1,496 @@
+{
+  "User": {
+    "id": "int",
+    "first_name": "str",
+    "last_name": "str",
+    "email": "str",
+    "address": "str",
+    "phone": "str",
+    "social_media": ["SocialMedia"],
+    "website": "str",
+    "profile_picture": "str",
+    "products": ["Product"],
+    "services": ["Service"],
+    "main_activities": ["Activity"],
+    "responsibilities": ["Responsibility"],
+    "roles": ["Role"],
+    "personal_needs": ["PersonalNeed"],
+    "economic_assessment": "EconomicAssessment",
+    "exchange_opportunities": ["ExchangeOpportunity"],
+    "available_time": ["AvailableTime"],
+    "local_currency_account": "LocalCurrencyAccount",
+    "badges": ["Badge"],
+    "methods": [
+      "register_user",
+      "login",
+      "edit_profile",
+      "get_user_info",
+      "get_user_products",
+      "get_user_services",
+      "get_user_roles",
+      "get_user_needs",
+      "get_user_local_currency_account",
+      "create_local_currency_account",
+      "update_local_currency_account",
+      "send_message",
+      "get_badges",
+      "delete_account",
+      "assess_needs",
+      "invite_member"
+    ]
+  },
+  "AvailableTime": {
+    "id": "int",
+    "user": "User",
+    "start_time": "datetime",
+    "end_time": "datetime",
+    "description": "str"
+  },
+  "Badge": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "image": "str",
+    "users": ["User"]
+  },
+  "SocialMedia": {
+    "id": "int",
+    "platform": "str",
+    "username": "str",
+    "url": "str"
+  },
+  "PersonalNeed": {
+    "id": "int",
+    "personal_need_description": "str",
+    "emotion": "str",
+    "priority": "str"
+  },
+  "Product": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "category": "str",
+    "price": "float",
+    "currency_accepted": "str",
+    "local_currency_percentage": "float",
+    "producer": "User",
+    "availability_status": "str",
+    "methods": ["create_product", "update_product", "delete_product"]
+  },
+  "Producer": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "category": "str",
+    "currency_accepted": "str",
+    "local_currency_percentage": "float",
+    "products": ["Product"],
+    "methods": []
+  },
+  "Service": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "category": "str",
+    "price": "float",
+    "currency_accepted": "str",
+    "local_currency_percentage": "float",
+    "provider": "User",
+    "methods": ["create_service", "update_service", "delete_service"]
+  },
+  "Activity": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "coordinators": ["User"],
+    "participants": ["User"]
+  },
+  "Responsibility": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "associated_users": ["User"]
+  },
+  "Role": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "associated_users": ["User"]
+  },
+  "Need": {
+    "person": "User",
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "category": "str",
+    "subcategory": "str",
+    "quantity": "float",
+    "unit": "str",
+    "user": "User"
+  },
+  "EconomicAssessment": {
+    "id": "int",
+    "user": "User",
+    "income": "float",
+    "expenses": "float",
+    "financial_needs": ["Needs"],
+    "methods": ["calculate_income", "calculate_expenses", "calculate_financial_needs"]
+  },
+  "ExchangeOpportunity": {
+    "id": "int",
+    "user": "User",
+    "category": "str",
+    "subcategory": "str",
+    "product": "Product",
+    "service": "Service",
+    "description": "str"
+  },
+  "LocalCurrencyAccount": {
+    "id": "int",
+    "user": "User",
+    "balance": "float",
+    "transaction_history": ["Transaction"],
+    "loans": ["Loan"],
+    "methods": [
+      "create_account",
+      "get_balance",
+      "make_transaction",
+      "get_payment_history",
+      "access_marketplace",
+      "get_loan_history",
+      "transfer_funds",
+      "check_account_status",
+      "calculate_community_dividend",
+      "calculate_basic_income",
+      "update_balance",
+      "view_transaction_history",
+      "apply_for_loan",
+      "process_loan_application",
+      "make_loan_payment",
+      "make_offer"
+    ]
+  },
+  "Transaction": {
+    "id": "int",
+    "sender": "User",
+    "receiver": "User",
+    "amount": "float",
+    "timestamp": "datetime",
+    "local_currency_account": "LocalCurrencyAccount"
+  },
+  "Loan": {
+    "id": "int",
+    "borrower": "User",
+    "lender": "User",
+    "amount": "float",
+    "interest_rate": "float",
+    "duration": "int",
+    "start_date": "datetime",
+    "due_date": "datetime",
+    "local_currency_account": "LocalCurrencyAccount"
+  },
+  "Marketplace": {
+    "id": "int",
+    "products": ["Product"],
+    "services": ["Service"],
+    "search_query": "str",
+    "methods": [
+    "list_all_marketplace",
+    "list_products",
+    "list_services",
+    "filter_products_by",
+    "filter_services_by",
+    "search_products",
+    "search_services",
+    "buy_product",
+    "buy_service",
+    "rate_product",
+    "rate_service",
+    "add_product",
+    "add_service",
+    "edit_product",
+    "edit_service",
+    "make_offer",
+    "purchase",
+    "view_purchase_history",
+    "recommend_products_services"
+    ]
+  },
+  "Order": {
+    "id": "int",
+    "buyer": "User",
+    "products": ["Product"],
+    "services": ["Service"],
+    "status": "str",
+    "total_price": "float",
+    "timestamp": "datetime",
+    "methods": ["create_order", "update_order", "delete_order", "submit_order"]
+  },
+  "ProductionStrategy": {
+    "id": "int",
+    "food_needs": ["Need"],
+    "production_plan": "ProductionPlan",
+    "methods": [
+      "create_plan",
+      "edit_plan",
+      "get_plan",
+      "monitor_production_indicators",
+      "control_problems",
+      "optimize_production",
+      "track_resources",
+      "schedule_tasks",
+      "calculate_harvest_dates",
+      "predict_yield",
+      "compare_scenarios",
+      "generate_report",
+      "summarize_food_needs",
+      "generate_personalized_info",
+      "provide_recommendations",
+      "coordinate_harvest_distribution"]
+  },
+  "ProductionPlan": {
+    "id": "int",
+    "productive_projects": ["Project"]
+  }
+
+  "Project": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "start_date": "datetime",
+    "end_date": "datetime",
+    "status": "str",
+    "category": "str",
+    "subcategory": "str",
+    "coordinators": ["User"],
+    "participants": ["User"],
+    "responsibilities": ["User","Responsibility"],
+    "production_costs": ["ProductionCosts"],
+    "distribution_costs": ["DistributionCosts"],
+    "exchange_opportunities": ["ExchangeOpportunity"],
+    "methods": [
+      "create_project",
+      "update_project",
+      "delete_project",
+      "get_project_info",
+      "assign_responsibilities",
+      "calculate_production_costs",
+      "calculate_distribution_costs",
+      "identify_exchange_opportunities",
+      "monitor_progress",
+      "evaluate_project",
+      "archive_project",
+      "share_project",
+      "get_apprenticeship_opportunities"
+    ]
+  },
+  "ProductionCost": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "value": "float",
+    "production_system": "ProductionSystem"
+  },
+  "DistributionCost": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "value": "float",
+    "production_system": "ProductionSystem"
+  },
+  "ProductionSystem": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "crop_planning": "CropPlanning",
+    "production_indicators": ["ProductionIndicator"],
+    "production_costs": ["ProductionCosts"],
+    "problem_controlling": "ProblemControlling"
+  },
+  "CropPlanning": {
+    "id": "int",
+    "crops": ["Crop"],
+    "start_date": "datetime",
+    "end_date": "datetime",
+    "production_system": "ProductionSystem"
+  },
+  "Crop": {
+    "id": "int",
+    "name": "str",
+    "scientific_name": "str",
+    "variety": "str",
+    "planting_date": "datetime",
+    "harvest_date": "datetime",
+    "crop_planning": "CropPlanning",
+    "production_season": "str",
+    "time_to_harvest": "str",
+    "sowing_distance": "int"
+  },
+  "ProductionIndicator": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "value": "float",
+    "metric": "str",
+    "production_system": "ProductionSystem"
+  },
+  "ProblemControlling": {
+    "id": "int",
+    "description": "str",
+    "solution_proposals": ["SolutionProposal"],
+    "production_system": "ProductionSystem"
+  },
+  "SolutionProposal": {
+    "id": "int",
+    "description": "str",
+    "problem_controlling": "ProblemControlling"
+  },
+  "GovernanceBoard": {
+    "id": "int",
+    "members": ["User"],
+    "governance_rules": ["GovernanceRule"],
+    "methods": [
+      "create_meeting",
+      "edit_meeting",
+      "get_meeting_info",
+      "participate_in_meeting",
+      "vote_on_proposal",
+      "create_proposal",
+      "edit_proposal",
+      "get_proposal_info",
+      "get_board_members",
+      "assign_roles",
+      "get_minutes",
+      "share_meeting_results"
+    ]
+  },
+  "GovernanceRule": {
+    "id": "int",
+    "description": "str",
+    "governance_rule_supporters": ["User"],
+    "governance_rule_critics": ["User"],
+    "governance_rule_status": "str",
+    "methods": [
+    ]
+  },
+  "EconomicBoard": {
+    "id": "int",
+    "members": ["User"],
+    "economic_agreements": ["EconomicAgreement"],
+    "methods": [
+      "create_meeting",
+      "edit_meeting",
+      "get_meeting_info",
+      "participate_in_meeting",
+      "vote_on_proposal",
+      "create_proposal",
+      "edit_proposal",
+      "get_proposal_info",
+      "get_board_members",
+      "assign_roles",
+      "get_financial_reports",
+      "share_meeting_results"
+    ]
+  },
+  "EconomicAgreement": {
+    "id": "int",
+    "description": "str",
+    "economic_rule_supporters": ["User"],
+    "economic_rule_critics": ["User"],
+    "economic_agreement_status": "str"
+  },
+  "CommunityActivity": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "date": "datetime",
+    "participants": ["User"]
+  },
+  "Workshop": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "date": "datetime",
+    "participants": ["User"],
+    "location": "str"
+  },
+  "CommunityDiningRoom": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "location": "str",
+    "schedule": "str",
+    "menu": ["MenuItem"]
+  },
+  "MenuItem": {
+    "id": "int",
+    "name": "str",
+    "ingredients": ["str"],
+    "community_dining_room": "CommunityDiningRoom"
+  },
+  "CommunityRole": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "users": ["User"]
+  },
+  "PersonalMessage": {
+    "id": "int",
+    "sender": "User",
+    "receiver": "User",
+    "content": "str",
+    "timestamp": "datetime"
+  },
+  "MessageBoard": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "messages": ["BoardMessage"]
+  },
+  "BoardMessage": {
+    "id": "int",
+    "user": "User",
+    "content": "str",
+    "timestamp": "datetime",
+    "board": "Board"
+  },
+  "Apprenticeship": {
+    "id": "int",
+    "mentor": "User",
+    "apprentice": "User",
+    "skill": "str",
+    "start_date": "datetime",
+    "end_date": "datetime"
+  },
+  "ReuseMaterial": {
+    "id": "int",
+    "name": "str",
+    "description": "str",
+    "quantity": "int",
+    "user": "User",
+    "availability": "str",
+    "methods": [
+      "list_materials",
+      "search_materials",
+      "offer_material",
+      "request_material",
+      "edit_material",
+      "delete_material",
+      "rate_material",
+      "get_material_info",
+      "match_material_needs",
+      "get_material_exchange_history",
+      "get_material_recommendations",
+      "get_material_availability"
+    ]
+  },
+  "CommunityInvitation": {
+    "id": "int",
+    "inviter": "User",
+    "invitee_email": "str",
+    "invitation_code": "str",
+    "expiration_date": "datetime",
+    "status": "str"
+  }
+}
+
